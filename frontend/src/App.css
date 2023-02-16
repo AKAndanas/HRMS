@@ -1,0 +1,119 @@
+.App {
+  background-color: #0d0d0d;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100vh;
+  background-color: #0d0d0d;
+}
+
+
+.Auth-form {
+  width: 840px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: #181717;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(30, 43, 49, 0.4);
+  box-shadow: 0 10px 30px 0 rgba(44, 56, 62, 0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+}
+.Auth-form1 {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: #181717;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(30, 43, 49, 0.4);
+  box-shadow: 0 10px 30px 0 rgba(44, 56, 62, 0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+}
+.border{
+  border-radius: 25px;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: whitesmoke;
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: whitesmoke;
+}
+input.my-input::placeholder {
+  color:whitesmoke;
+}
+input1.my-input1::placeholder{
+  color: #0d0d0d;
+}
+.navbar{
+  width:100vw;
+}
+.bold{
+  font-weight:bold;
+}
+.area{
+  background-color: #0d0d0d;
+  height: 100vh;
+  width:auto;
+  background-size: cover;
+  padding: 30%;
+}
+
+.input-field{
+  border-color: rgb(73, 68, 68);
+  color: black;
+}
+.field-heading{
+  color:black;
+}
+
+.card1{
+  margin-left: 22.5% !important;
+  margin-top: 1% !important;
+}
+
+.card2{
+  margin-left: 10% !important;
+  margin-top: 1% !important;
+}
+.card3{
+  margin-right: 17.5% !important;
+}
+
+
+.StyledContent{
+  margin: 'auto';
+  display: 'flex';
+  margin-top: 35% !important;
+  padding: spacing(12, 0);
+
+}
+.card9{
+  background-color: azure;
+  color:grey;
+  background-size: cover;
+}
+
+.land{
+  margin: 'auto';
+  display: 'flex';
+  align-items: center;
+  padding-top: 40px;
+}
