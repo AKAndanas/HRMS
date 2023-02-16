@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams,useNavigate } from 'react-router-dom'
 import httpClient from './httpClient';
+import { Container,Typography,Card,Stack,TextField,Toolbar} from '@mui/material';
 import DashboardLayout from './layouts/dashboard/DashboardLayout';
+import { styled} from '@mui/material/styles';
+
 
 
 export default function UpdateForm() {
@@ -52,6 +55,14 @@ export default function UpdateForm() {
     fetchData()
   }, [id])
 
+  const StyledRoot = styled(Toolbar)(({ theme }) => ({
+    height: 30,
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: theme.spacing(0, 1, 0, 3),
+    marginLeft: '17.5%'
+  }));
+
 
 
   const handleChange = event => {
@@ -75,212 +86,93 @@ export default function UpdateForm() {
     <DashboardLayout/>
 
  
-    <div className='card text-center'>
-    <h1>Add New Candidade</h1>
-    <hr/>
+    <Container className='font-link' >
+      <StyledRoot>
+        <Stack>
+       <Typography variant="h4" gutterBottom className='m-3'>
+           Update Candidate
+         </Typography>
+         </Stack>
+         </StyledRoot>
+      <Card className=' text-center card1'>
+    <div className='m-3 d-flex flex-row justify-content-center col-md-12'>
+      <div className='card2 text-center'>
+      <Stack spacing={1}>
+
       <form onSubmit={handleSubmit}>
-      <label className='text-dark h5'>
-        Name
-        <br/>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          
-        />
-      </label>
+        <div className='container'>
+        <div className='row'>
+        <TextField className='col-md-5 m-3' name="name" label="Name" value={formData.name} onChange={handleChange} variant="standard"/>
+      <br />      <br />
+
+      <TextField className='col-md-5 m-3' name="phone" label="Phone" value={formData.phone} onChange={handleChange} variant="standard" />
+      <br />      <br />
+
+      <TextField className='col-md-5 m-3' name="email" label="Email" value={formData.email} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Phone
-        <br/>
-        <input
-          type="number"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField className='col-md-5 m-3' name="position" label="Position" value={formData.position} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Email
-        <br/>
-        <input
-          type="text"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </label >
+      <TextField className='col-md-5 m-3' name="experience" type='number' label="Experience" value={formData.experience} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Position
-        <br/>
-        <input
-          type="text"
-          name="position"
-          value={formData.position}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField className='col-md-5 m-3' name="noticeperiod" label="Notice Period" value={formData.noticeperiod} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Experiance
-        <br/>
-        <input
-          type="number"
-          name="experience"
-          value={formData.experience}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField className='col-md-5 m-3' name="location" label="Location" value={formData.location} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Notice Period
-        <br/>
-        <input
-          type="number"
-          name="noticeperiod"
-          value={formData.noticeperiod}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField className='col-md-5 m-3' name="remarks" label="Remarks" value={formData.remarks} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Location
-        <br/>
-        <input
-          type="text"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField className='col-md-5 m-3' name="curcompany" label="Current Company" value={formData.curcompany} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Remarks
-        <br/>
-        <input
-          type="text"
-          name="remarks"
-          value={formData.remarks}
-          onChange={handleChange}
-        />
-   </label>
-   <br />
-   <label className='text-dark h5'>
-   Current Company
-   <br/>
-   <input
-          type="text"
-          name="curcompany"
-          value={formData.curcompany}
-          onChange={handleChange}
-        />
-   </label>
-   <br />
-   <label className='text-dark h5'>
-   Current CTC
-   <br/>
-   <input
-          type="number"
-          name="curctc"
-          value={formData.curctc}
-          onChange={handleChange}
-        />
-   </label>
-   <br />
-   <label className='text-dark h5'>
-   Expected CTC
-   <br/>
-   <input
-          type="number"
-          name="expctc"
-          value={formData.expctc}
-          onChange={handleChange}
-        />
-   </label>
-   <br />
-   <label className='text-dark h5'>
-        Date of Interview
-        <br/>
-        <input
-          type="date"
-          name="doi"
-          value={formData.doi}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField className='col-md-5 m-3' name="curctc" label="Current CTC" value={formData.curctc} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
+      <TextField className='col-md-5 m-3' name="expctc" label="Expected CTC" value={formData.expctc} onChange={handleChange} variant="standard" />
+      <br />
+      <TextField type="date" className='col-md-5 m-3' name="doi" label="Date of Interview" value={formData.doi} onChange={handleChange} variant="standard" />
+      <br /> <br/>
+      <label className='text-secondary col-md-5 m-3'>
         Status
         <br/>
-        <select name="status" value={formData.status} onChange={handleChange}>
+        <select className='text-secondary' name="status" value={formData.status} onChange={handleChange}>
       <option value="" disabled>Select an option</option>
       <option value="Active">Active</option>
       <option value="Pending">Pending</option>
       <option value="Rejected">Rejected</option>
     </select>
       </label>
+        <br />
+      <TextField className='col-md-5 m-3' name="feedback" label="Feedback" value={formData.feedback} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Feedback
-        <br/>
-        <input
-          type="text"
-          name="feedback"
-          value={formData.feedback}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField className='col-md-5 m-3' name="createdby" label="Created By" value={formData.createdby} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Created By
-        <br/>
-        <input
-          type="text"
-          name="createdby"
-          value={formData.createdby}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField type="date" className='col-md-5 m-3' name="createddate" label="Created Date" value={formData.createddate} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Created Date
-        <br/>
-        <input
-          type="date"
-          name="createddate"
-          value={formData.createddate}
-          onChange={handleChange}
-        />
-      </label>
+      <TextField  type="date" className='col-md-5 m-3' name="updateddate" label="Updated Date" value={formData.updateddate} onChange={handleChange} variant="standard" />
       <br />
-      <label className='text-dark h5'>
-        Updated Date
-        <br/>
-        <input
-          type="date"
-          name="updateddate"
-          value={formData.updateddate}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label className='text-dark h5'>
+      <label className='text-secondary col-md-5 m-3'>
         Vendor
         <br/>
-        <input
-          type="text"
-          name="vendor"
-          value={formData.vendor}
-          onChange={handleChange}
-        />
+      <select className='text-secondary' name="vendor" value={formData.vendor} onChange={handleChange}>
+      <option value="" disabled>Select an option</option>
+      <option value="LinkedIN">LinkedIN</option>
+      <option value="Naukri">Naukri</option>
+      <option value="Referral">Referral</option>
+      <option value="Others">Others</option>
+      </select>
       </label>
+
       <br />
-   <button type="submit" className='btn btn-primary'>Submit</button>
-   </form>
+            <div>
+   <button type="submit" className='btn btn-primary mt-3 card3'>Submit</button>
+   <br/>
+   <br/>
    </div>
+   </div>
+   </div>
+   </form>
+   </Stack>
+   </div>
+   </div>
+   </Card>
+   </Container>
    </>
    );
    }
