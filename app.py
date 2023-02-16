@@ -4,8 +4,6 @@ from flask_bcrypt import Bcrypt
 from config import ApplicationConfig
 from models import db,User,Account
 from flask_session import Session
-import PyPDF2
-import os
 
 
 app = Flask(__name__)
@@ -37,32 +35,6 @@ def add_user():
     db.session.commit()
     return jsonify({'message': 'New user created!'}), 201
 
-'''@app.route('/upload-pdf', methods=['POST'])
-def upload_pdf():
-    # Check if file is present in the request
-    if 'file' not in request.files:
-        return jsonify({'message': 'No file selected for upload'}), 400
-
-    # Get the file from the request
-    file = request.files['file']
-
-    # Check if the file has a valid PDF extension
-    if file.filename.split('.')[-1].lower() != 'pdf':
-        return jsonify({'message': 'File type not allowed'}), 400
-
-    # Create a PyPDF2 object from the file
-    pdf_file = PyPDF2.PdfFileReader(file)
-
-    # Create a document object and save it to the database
-    document = Document(
-        name=file.filename,
-        size=os.path.getsize(file),
-        content=pdf_file.getPage(0).extractText()  # get the first page's text content
-    )
-    db.session.add(document)
-    db.session.commit()
-
-    return jsonify({'message': 'File uploaded successfully', 'id': document.id}), 201'''
 
 @app.route('/user/<int:id>', methods=['GET'])
 def get_user(id):
