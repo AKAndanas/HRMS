@@ -9,7 +9,7 @@ class ApplicationConfig:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
-    SQLALCHEMY_DATABASE_URI = r'mssql+pyodbc://@DEEPANKAR\HRMSSERVER/mydb?driver=ODBC+Driver+17+for+SQL+Server'
+    SQLALCHEMY_DATABASE_URI = "sqlite:///test.db"
 
 
     SESSION_TYPE = "redis"
