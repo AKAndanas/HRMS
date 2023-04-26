@@ -12,7 +12,6 @@ def get_uuid():
 
 
 
-
 class Account(db.Model):
     __tablename__="accounts"
     id= db.Column(db.String(32), primary_key=True, unique = True, default=get_uuid)
@@ -40,7 +39,11 @@ class User(db.Model):
     createddate = db.Column(db.String(80), nullable=False)
     updateddate = db.Column(db.String(80), nullable=False)
     vendor= db.Column(db.String(80), nullable=False)
-    def __init__(self, name, email,experience,phone,position,noticeperiod,location,remarks,curcompany,curctc,expctc,doi,status,feedback,createdby,createddate,updateddate,vendor):
+
+
+
+
+    def __init__(self, name, email,experience,phone,position,noticeperiod,location,remarks,curcompany,curctc,expctc,doi,status,feedback,createdby,createddate,updateddate,vendor, resume_file=None):
         self.name = name
         self.email = email
         self.experience= experience

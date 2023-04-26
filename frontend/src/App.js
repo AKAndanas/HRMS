@@ -9,6 +9,7 @@ import LandingPage from "./LandingPage";
 import DeleteForm from "./Delete";
 import UpdateForm from "./Update";
 import ThemeProvider  from "./theme"
+import Resume from "./Resume"
 function App() {
 
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/addnew" element={<AddNewCandidate/>} />
         <Route path="/update/:id" element={<UpdateForm />} />
         <Route path="/delete/:id" element={<DeleteForm/>} />
+        <Route path="/resume" element={<Resume />} />
       </Routes>
       </ThemeProvider>
     </BrowserRouter>
