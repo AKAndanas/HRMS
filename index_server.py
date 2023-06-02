@@ -6,7 +6,7 @@ from llama_index import SimpleDirectoryReader, GPTSimpleVectorIndex, Document, L
 from langchain.chat_models import ChatOpenAI
 
 
-os.environ['OPENAI_API_KEY'] = "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"
+os.environ['OPENAI_API_KEY'] = ""
 
 index = None
 stored_docs = {}
