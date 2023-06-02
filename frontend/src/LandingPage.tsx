@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import httpClient from "./httpClient";
 import { useNavigate } from "react-router-dom";
 import Logo from "./components/logo/Logo";
@@ -30,25 +30,16 @@ const LandingPage = () => {
     // eslint-disable-next-line
   }, []);
 
-  /*useEffect(() => {
-        httpClient.get('http://localhost:5000/@me')
-            .then(response => {
-                setUser(response.data);
-            })
-            .catch(error => {
-              console.log(error)
-            });
-    }, []);*/
+  const logoStyles = {
+    position: "fixed",
+    top: { xs: 16, sm: 24, md: 40 },
+    left: { xs: 16, sm: 24, md: 40 },
+  };
+
   return (
     <>
       <StyledRoot>
-        <Logo
-          sx={{
-            position: "fixed",
-            top: { xs: 16, sm: 24, md: 40 },
-            left: { xs: 16, sm: 24, md: 40 },
-          }}
-        />
+      <Logo sx={logoStyles as any} />
       </StyledRoot>
 
       <Container maxWidth="sm">

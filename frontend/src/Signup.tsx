@@ -9,7 +9,7 @@ import Logo from './components/logo/Logo';
 
 
 
-export default function Signup(props) {
+export default function Signup(props : any) {
   const [name,setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +31,7 @@ export default function Signup(props) {
 
     window.location.href ="/login"
   }
-    catch (error) {
+    catch (error: any) {
     if (error.response.status === 401){
       alert("Invalid Credentials");
     }
@@ -43,26 +43,15 @@ export default function Signup(props) {
     },
   }));
   
-  /*const StyledSection = styled('div')(({ theme }) => ({
-    width: '100%',
-    maxWidth: 480,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    boxShadow: theme.customShadows.card,
-    backgroundColor: theme.palette.background.default,
-  }));*/
+  const logoStyles = {
+    position: "fixed",
+    top: { xs: 16, sm: 24, md: 40 },
+    left: { xs: 16, sm: 24, md: 40 },
+  };
   
-  /*const StyledContent = styled('div')(({ theme }) => ({
-    maxWidth: 480,
-    margin: 'auto',
-    minHeight: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    padding: theme.spacing(12, 0),
-  }));*/
-
+  // ...
+  
+  
 
   
 
@@ -70,13 +59,7 @@ export default function Signup(props) {
 
     <>
     <StyledRoot>
-        <Logo
-          sx={{
-            position: 'fixed',
-            top: { xs: 16, sm: 24, md: 40 },
-            left: { xs: 16, sm: 24, md: 40 },
-          }}
-        />
+    <Logo sx={logoStyles as any} />
         </StyledRoot>
     <Container maxWidth="sm" >
     <div className='StyledContent'>

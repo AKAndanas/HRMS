@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CircleLoader } from 'react-spinners';
+import { PropagateLoader } from 'react-spinners';
 import classNames from 'classnames';
 import queryIndex, { ResponseSources } from '../../apis/queryIndex';
 import React from 'react';
@@ -42,22 +42,14 @@ const IndexQuery = () => {
   });
 
   return (
+    
     <div className='query'>
-      <div className='query__input'>
-        <label htmlFor='query-text'>Ask a question!</label>
-        <input
-          type='text'
-          name='query-text'
-          placeholder='Enter a question here'
-          onKeyDown={handleQuery}
-        ></input>
-      </div>
 
-      <CircleLoader
+      <PropagateLoader
         className={classNames('query__loader', {
           'query__loader--loading': isLoading,
         })}
-        color='#00f596'
+        color='#000000'
       />
 
       <div
@@ -70,6 +62,16 @@ const IndexQuery = () => {
         </div>
         {responseText}
       </div>
+      <div className='query__input'>
+        <label className='text-black'>Ask a question!</label>
+        <input
+          type='text'
+          name='query-text'
+          placeholder='Enter a question here'
+          onKeyDown={handleQuery}
+        ></input>
+      </div>
+    
       <div
         className={classNames('query__sources', {
           'query__sources--loading': isLoading,
@@ -81,6 +83,7 @@ const IndexQuery = () => {
         {sourceElems}
       </div>
     </div>
+    
   );
 };
 

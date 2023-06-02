@@ -65,11 +65,11 @@ export default function UpdateForm() {
 
 
 
-  const handleChange = event => {
+  const handleChange = (event:any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     httpClient
     .put(`http://localhost:5000/user/${id}`, formData)

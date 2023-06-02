@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import React from 'react';
-import { CircleLoader } from 'react-spinners';
+import { PropagateLoader } from 'react-spinners';
 import insertDocument from '../../apis/insertDocument';
 
 interface HTMLInputEvent extends ChangeEvent {
@@ -80,7 +80,7 @@ const DocumentUploader = ({ setRefreshViewer }: DocumentUploaderProps) => {
           Submit
         </button>
       )}
-      {isLoading && <CircleLoader color='#00f596' className='uploader__loader' />}
+      {isLoading && <PropagateLoader color='#000000' className='uploader__loader' />}
     </div>
   );
 };

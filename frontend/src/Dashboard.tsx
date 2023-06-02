@@ -19,14 +19,67 @@ import {
   Typography,
   TableContainer,
   TableHead,
+  TableRow,
+  TableCell,
   Select,
   InputLabel,
 } from "@mui/material";
 import Iconify from "./components/iconify/Iconify";
 
+interface IUser {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  position: string;
+  experience: string;
+  noticeperiod: string;
+  curctc: string;
+  expctc: string;
+  location: string;
+  remarks: string;
+  curcompany: string;
+  doi: string;
+  status: string;
+  feedback: string;
+  createdby: string;
+  createddate: string;
+  updateddate: string;
+  vendor: string;
+}
+
+interface UserTableCellProps {
+  className: string;
+  value: string | undefined;
+}
+
+const UserTableCell: React.FC<UserTableCellProps> = ({ className, value }) => (
+  <TableCell className={className}>{value}</TableCell>
+);
+
+const userProperties: (keyof IUser)[] = [
+  "name",
+  "phone",
+  "email",
+  "position",
+  "experience",
+  "noticeperiod",
+  "curctc",
+  "expctc",
+  "location",
+  "remarks",
+  "curcompany",
+  "doi",
+  "status",
+  "feedback",
+  "createdby",
+  "createddate",
+  "updateddate",
+  "vendor",
+];
+
 const Dashboard = () => {
-  const [users, setUser] = useState([]);
-  //const { id } = useParams()
+  const [users, setUser] = useState<IUser[]>([]);
   const navigate = useNavigate();
   const [selectedVendor, setSelectedVendor] = useState("");
 
@@ -56,7 +109,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetch("http://localhost:5000/users", {
-      methods: "GET",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
@@ -64,7 +117,7 @@ const Dashboard = () => {
       .then((resp) => resp.json())
       .then((resp) => {
         if (selectedVendor) {
-          setUser(resp.filter((user) => user.vendor === selectedVendor));
+          setUser(resp.filter((user:IUser) => user.vendor === selectedVendor));
         } else {
           setUser(resp);
         }
@@ -74,7 +127,7 @@ const Dashboard = () => {
       });
   }, [selectedVendor]);
 
-  const handleVendorChange = (event) => {
+  const handleVendorChange = (event:any) => {
     setSelectedVendor(event.target.value);
   };
 
@@ -115,7 +168,7 @@ const Dashboard = () => {
               onChange={handleVendorChange}
             >
               <MenuItem value={""}>All</MenuItem>
-              <MenuItem value={"LinkedIN"}>LinkedIN</MenuItem>
+              <MenuItem value={"LinkedIn"}>LinkedIn</MenuItem>
               <MenuItem value={"Naukri"}>Naukri</MenuItem>
               <MenuItem value={"Referral"}>Referral</MenuItem>
               <MenuItem value={"Others"}>Others</MenuItem>
@@ -156,6 +209,38 @@ const Dashboard = () => {
                 </tr>
               </TableHead>
               <TableBody>
+                {users.map((user: IUser) => (
+                  <TableRow key={user.id}>
+                    {userProperties.map((prop) => (
+                      <UserTableCell
+                        key={`${user.id}-${prop}`}
+                        className="text-dark text-center"
+                        value={user[prop]}
+                      />
+                    ))}
+                    <TableCell>
+                      <MenuItem>
+                        <Link to={`/update/${user.id}`}>
+                          <Iconify icon={"eva:edit-fill"} sx={{ mr: 2 }} />
+                          Edit
+                        </Link>
+                      </MenuItem>
+                    </TableCell>
+                    <TableCell sx={{ color: "error.main" }}>
+                      <MenuItem>
+                        <Link to={`/delete/${user.id}`}>
+                          <Iconify
+                            icon={"eva:trash-2-outline"}
+                            sx={{ mr: 2 }}
+                          />
+                          Delete
+                        </Link>
+                      </MenuItem>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+              {/* <TableBody>
                 {users.map((user) => (
                   <tr key={user.id}>
                     <td className="text-dark text-center">{user.name}</td>
@@ -198,7 +283,7 @@ const Dashboard = () => {
                     </MenuItem>
                   </tr>
                 ))}
-              </TableBody>
+              </TableBody> */}
             </Table>
           </TableContainer>
         </div>

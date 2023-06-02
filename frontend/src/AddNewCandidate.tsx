@@ -13,9 +13,44 @@ import {
 import DashboardLayout from "./layouts/dashboard/DashboardLayout";
 import { styled } from "@mui/material/styles";
 
+interface FormData {
+  name: string;
+  phone: string;
+  email: string;
+  position: string;
+  experience: string;
+  noticeperiod: string;
+  location: string;
+  remarks: string;
+  curcompany: string;
+  curctc: string;
+  expctc: string;
+  doi: string;
+  status: string;
+  feedback: string;
+  createdby: string;
+  createddate: string;
+  updateddate: string;
+  vendor: string;
+}
+
+type FormFieldName = keyof FormData;
+
+interface FormField {
+  label: string;
+  name: FormFieldName;
+  type: string;
+}
+
+interface SelectField {
+  label: string;
+  name: FormFieldName;
+  options: string[];
+}
+
 const AddCar = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     email: "",
@@ -36,12 +71,43 @@ const AddCar = () => {
     vendor: "",
   });
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const formFields: FormField[] = [
+    { label: "Name", name: "name", type: "text" },
+    { label: "Phone", name: "phone", type: "text" },
+    { label: "Email", name: "email", type: "email" },
+    { label: "Position", name: "position", type: "text" },
+    { label: "Experience", name: "experience", type: "number" },
+    { label: "Notice Period", name: "noticeperiod", type: "text" },
+    { label: "Location", name: "location", type: "text" },
+    { label: "Remarks", name: "remarks", type: "text" },
+    { label: "Current Company", name: "curcompany", type: "text" },
+    { label: "Current CTC", name: "curctc", type: "text" },
+    { label: "Expected CTC", name: "expctc", type: "text" },
+    { label: "Date of Interview", name: "doi", type: "date" },
+    { label: "Feedback", name: "feedback", type: "text" },
+    { label: "Created By", name: "createdby", type: "text" },
+    { label: "Created Date", name: "createddate", type: "date" },
+    { label: "Updated Date", name: "updateddate", type: "date" },
+  ];
+
+  const selectFields: SelectField[] = [
+    {
+      label: "Status",
+      name: "status",
+      options: ["Active", "Pending", "Rejected"],
+    },
+    {
+      label: "Vendor",
+      name: "vendor",
+      options: ["LinkedIN", "Naukri", "Referral", "Others"],
+    },
+  ];
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     axios
       .post("http://localhost:5000/user", formData)
@@ -82,7 +148,6 @@ const AddCar = () => {
   return (
     <>
       <DashboardLayout />
-
       <Container className="font-link">
         <StyledRoot>
           <Stack>
@@ -98,7 +163,44 @@ const AddCar = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="container">
                     <div className="row">
-                      <TextField
+                      {formFields.map((field) => (
+                        <TextField
+                          key={field.name}
+                          className="col-md-5 m-3"
+                          name={field.name}
+                          label={field.label}
+                          type={field.type}
+                          value={formData[field.name]}
+                          onChange={handleChange}
+                          variant="standard"
+                        />
+                      ))}
+
+                      {selectFields.map((field) => (
+                        <label
+                          className="text-secondary col-md-5 m-3"
+                          key={field.name}
+                        >
+                          {field.label}
+                          <br />
+                          <select
+                            className="text-secondary"
+                            name={field.name}
+                            value={formData[field.name]}
+                            onChange={handleChange}
+                          >
+                            <option value="" disabled>
+                              Select an option
+                            </option>
+                            {field.options.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      ))}
+                      {/* <TextField
                         className="col-md-5 m-3"
                         name="name"
                         label="Name"
@@ -282,7 +384,7 @@ const AddCar = () => {
                           <option value="Others">Others</option>
                         </select>
                       </label>
-                      <br />
+                      <br />*/}
                       <div>
                         <button
                           type="submit"
@@ -290,9 +392,10 @@ const AddCar = () => {
                         >
                           Submit
                         </button>
+                        
                         <br />
                         <br />
-                      </div>
+                      </div> 
                     </div>
                   </div>
                 </form>

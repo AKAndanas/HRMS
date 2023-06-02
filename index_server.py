@@ -1,15 +1,12 @@
 import os
 import pickle
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# NOTE: for local testing only, do NOT deploy with your key hardcoded
-os.environ['OPENAI_API_KEY']
-
 from multiprocessing import Lock
 from multiprocessing.managers import BaseManager
-from llama_index import SimpleDirectoryReader, GPTSimpleVectorIndex, Document
+from llama_index import SimpleDirectoryReader, GPTSimpleVectorIndex, Document, LLMPredictor, ServiceContext
+from langchain.chat_models import ChatOpenAI
+
+
+os.environ['OPENAI_API_KEY'] = "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"
 
 index = None
 stored_docs = {}
@@ -22,7 +19,6 @@ pkl_name = "stored_documents.pkl"
 def initialize_index():
     """Create a new global index, or load one from the pre-set path."""
     global index, stored_docs
-
     with lock:
         if os.path.exists(index_name):
             index = GPTSimpleVectorIndex.load_from_disk(index_name)
@@ -47,7 +43,7 @@ def insert_into_index(doc_file_path, doc_id=None):
         document.doc_id = doc_id
     
     # Keep track of stored docs -- llama_index doesn't make this easy
-    stored_docs[document.doc_id] = document.text[0:200]  # only take the first 200 chars
+    stored_docs[document.doc_id] = document.text[0:50]  # only take the first 200 chars
 
     with lock:
         index.insert(document)
@@ -60,12 +56,15 @@ def insert_into_index(doc_file_path, doc_id=None):
 
 def get_documents_list():
     """Get the list of currently stored documents."""
-    global stored_doc
+    global stored_docs
     documents_list = []
     for doc_id, doc_text in stored_docs.items():
         documents_list.append({"id": doc_id, "text": doc_text})
 
     return documents_list
+
+
+
 
 
 if __name__ == "__main__":
